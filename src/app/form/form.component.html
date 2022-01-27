@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="row">
+         <div class="col-6">
+            <form class="form" [formGroup]="user" (ngSubmit)="onSubmit()">
+                <!-- -----name------ -->
+                <div class="form-group"
+                [ngClass]="{ 'form-invalid': !user.get('name')?.valid && user.get('name')?.['touched'] }">
+                <label>name:</label>
+                <input type="text" required formControlName="name" class="form-control"
+                    placeholder="name" name="name" />
+                <span
+                    *ngIf="!user.get('name')?.valid && user.get('name')?.touched && user.get('name')?.errors?.['required']"
+                    class="text-danger">
+                    name Name is required
+                </span>
+                <span
+                    *ngIf="!user.get('name')?.valid && user.get('name')?.touched && user.get('name')?.errors?.['name']"
+                    class="text-danger">
+                    Please enter a valid name
+                </span>
+            </div>
+            <!-- ------age-------- -->
+            <div class="form-group mt-3">
+                <label>Age</label>
+                <input type="number" name="age" class="form-control" min="18" formControlName="age" autocomplete="off"
+                    required>
+                <span class="text-danger"
+                    *ngIf="user.get('age')?.touched && user.get('age')?.errors?.['required']">Please enter your
+                    age.</span>
+                <span class="text-danger" *ngIf="user.get('age')?.touched && user.get('age')?.errors?.['min']">Your
+                    age should be above 18.</span>
+            </div>
+              <!-- -------email-------- -->
+                <div class="form-group"
+                    [ngClass]="{ 'form-invalid': !user.get('email')?.valid && user.get('email')?.['touched'] }">
+                    <label>Email</label>
+                    <input type="text" required formControlName="email" placeholder=""
+                        class="form-control" name="email" />
+                    <span
+                        *ngIf="!user.get('email')?.valid && user.get('email')?.touched && user.get('email')?.errors?.['required']"
+                        class="text-danger">
+                        Email is required
+                    </span>
+                    <span
+                        *ngIf="!user.get('email')?.valid && user.get('email')?.touched && user.get('email')?.errors?.['email']"
+                        class="text-danger">
+                        Please enter a valid email
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <!-- ------- -->
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+           <div>
+               <label for="">education</label>
+               <br>
+
+               <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="dateOfBirth">Date of birth</label>
+                      <div class="input-group">
+                        <!-- <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker"> -->
+                        <div class="input-group-append">
+                          <!-- <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                </div>
+              </ng-template>
+              
+              <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+              
+              <hr>
+              
+              <pre>{{ closeResult }}</pre>
+              <!-- ----------------------------------------------------- -->
+             <!-- <button type="button" class="btn btn-secondary" style=" color: blanchedalmond; 
+              border-radius: 50%;"   [routerLink]="['/pluse']">+</button>
+           </div> -->
+           
+            <!-- <table class="table table-bordered">
+                <thead>
+                        <tr>
+                            <th>collageName</th>
+                            <th>departmentName</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of studentData">
+                        <td>{{item.collageName}}</td>
+                        <td>{{item.departmentName}}</td>
+                        <td>
+                            <button class="btn btn-secondary">-</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </div>
+    </div>
+
+</div>
