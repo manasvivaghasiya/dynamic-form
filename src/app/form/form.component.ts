@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -10,23 +11,56 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class FormComponent implements OnInit {
   user:FormGroup;  
+  // studentData:any;
   closeResult = '';
+  studentData: any = [];
+  // userList: any;
 
 
-  constructor(private formBuilder:FormBuilder,private modalService: NgbModal) { 
+
+  constructor(private formBuilder:FormBuilder,private modalService: NgbModal){ 
     this.user = this.formBuilder.group({
       name:['',Validators.required],
       age: ['', Validators.required],
-      email:['',Validators.required]
+      email:['',Validators.required],
+      collageName:['',Validators.required],
+      departmentName:['',Validators.required]
       })
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getUser()
   }
+
+  getUser(){
+    return this.studentData
+  }
+
+  getUserByID(id:number){
+    return this.studentData.find((x: { id: number; })=> x.id== id)
+  }
+
+  addUser(){
+     this.studentData.push({
+       ...this.user.value,
+       id:this.studentData.length + 1
+     })
+     
+  }
+
+
+  remove(id:number){
+    this.studentData = this.studentData.filter((x:any) => x.id !=id);
+  }
+
+  // removeSelectedRows(){
+  //   this.studentData = this.studentData.filter((u:any) => !u.isSelected);
+  // }
+
   onSubmit(){
     
   }
   open(content: any) {
+    this.user.reset()
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result: any) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason: any) => {
@@ -47,6 +81,22 @@ export class FormComponent implements OnInit {
 
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
 
 
 

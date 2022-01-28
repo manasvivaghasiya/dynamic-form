@@ -53,7 +53,7 @@
 </div>
     <!-- ------- -->
 <div class="container">
-    <div class="row">
+    <div class="row"  >
         <div class="col-6">
            <div>
                <label for="">education</label>
@@ -61,40 +61,68 @@
 
                <ng-template #content let-modal>
                 <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                  <h4 class="modal-title" id="modal-basic-title">information</h4>
                   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form>
-                    <div class="form-group">
-                      <label for="dateOfBirth">Date of birth</label>
-                      <div class="input-group">
-                        <!-- <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker"> -->
-                        <div class="input-group-append">
-                          <!-- <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button> -->
-                        </div>
-                      </div>
+                    <form class="form" [formGroup]="user" (ngSubmit)="onSubmit()">
+                        <!-- -----name----- -->
+                        <div class="form-group"
+                        [ngClass]="{ 'form-invalid': !user.get('collageName')?.valid && user.get('collageName')?.['touched'] }">
+                        <label>collageName:</label>
+                        <input type="text" required formControlName="collageName" class="form-control"
+                            placeholder="name" name="name" />
+                        <span
+                            *ngIf="!user.get('collageName')?.valid && user.get('collageName')?.touched && user.get('collageName')?.errors?.['required']"
+                            class="text-danger">
+                            collageName is required
+                        </span>
+                        <span
+                            *ngIf="!user.get('collageName')?.valid && user.get('collageName')?.touched && user.get('collageName')?.errors?.['collageName']"
+                            class="text-danger">
+                            Please enter a valid collageName
+                        </span>
                     </div>
+                    <!-- ----- -->
+                    <div class="form-group"
+                    [ngClass]="{ 'form-invalid': !user.get('departmentName')?.valid && user.get('departmentName')?.['touched'] }">
+                    <label>departmentName:</label>
+                    <input type="text" required formControlName="departmentName" class="form-control"
+                        placeholder="name" name="name" />
+                    <span
+                        *ngIf="!user.get('departmentName')?.valid && user.get('departmentName')?.touched && user.get('departmentName')?.errors?.['required']"
+                        class="text-danger">
+                        departmentName is required
+                    </span>
+                    <span
+                        *ngIf="!user.get('departmentName')?.valid && user.get('departmentName')?.touched && user.get('departmentName')?.errors?.['departmentName']"
+                        class="text-danger">
+                        Please enter a valid departmentName
+                    </span>
+                </div>
+                <br>
+                <div>
+                      <button type="button"  class="btn btn-secondary" (click)="addUser()">submit</button>
+       
+                </div>
+            
+
                   </form>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" (click)="modal.close('click')">submit</button>
+ 
+                </div> -->
               </ng-template>
               
-              <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
-              
-              <hr>
+              <button type="button"  class="btn btn-lg btn-secondary" style="border-radius: 50%;" (click)="open(content)">+</button>
               
               <pre>{{ closeResult }}</pre>
               <!-- ----------------------------------------------------- -->
-             <!-- <button type="button" class="btn btn-secondary" style=" color: blanchedalmond; 
-              border-radius: 50%;"   [routerLink]="['/pluse']">+</button>
-           </div> -->
-           
-            <!-- <table class="table table-bordered">
+
+           <table class="table table-bordered">
                 <thead>
                         <tr>
                             <th>collageName</th>
@@ -106,12 +134,11 @@
                         <td>{{item.collageName}}</td>
                         <td>{{item.departmentName}}</td>
                         <td>
-                            <button class="btn btn-secondary">-</button>
+                            <button type="button"  class="btn btn-secondary" style="border-radius: 50%;"  (click)="remove(item.id)">-</button>
                         </td>
                     </tr>
                 </tbody>
-            </table> -->
+            </table>
         </div>
     </div>
-
 </div>
