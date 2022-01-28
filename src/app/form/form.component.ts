@@ -44,8 +44,7 @@ export class FormComponent implements OnInit {
        ...this.user.value,
        id:this.studentData.length + 1
      })
-     
-  }
+    }
 
 
   remove(id:number){
