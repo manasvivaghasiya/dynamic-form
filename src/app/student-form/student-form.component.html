@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form class="form" [formGroup]="user" (ngSubmit)="onSubmit">
+                <div class="form-group"
+                [ngClass]="{ 'form-invalid': !user.get('name')?.valid && user.get('name')?.['touched'] }">
+                <label>name:</label>
+                <input type="text" required formControlName="name" class="form-control"
+                    placeholder="name" name="name" />
+                <span
+                    *ngIf="!user.get('name')?.valid && user.get('name')?.touched && user.get('name')?.errors?.['required']"
+                    class="text-danger">
+                    name Name is required
+                </span>
+                <span
+                    *ngIf="!user.get('name')?.valid && user.get('name')?.touched && user.get('name')?.errors?.['name']"
+                    class="text-danger">
+                    Please enter a valid name
+                </span>
+            </div>
+            <!-- ------age-------- -->
+            <div class="form-group mt-3">
+                <label>Age</label>
+                <input type="number" name="age" class="form-control" min="18" formControlName="age" autocomplete="off"
+                    required>
+                <span class="text-danger"
+                    *ngIf="user.get('age')?.touched && user.get('age')?.errors?.['required']">Please enter your
+                    age.</span>
+                <span class="text-danger" *ngIf="user.get('age')?.touched && user.get('age')?.errors?.['min']">Your
+                    age should be above 18.</span>
+            </div>
+              <!-- -------email-------- -->
+                <div class="form-group"
+                    [ngClass]="{ 'form-invalid': !user.get('email')?.valid && user.get('email')?.['touched'] }">
+                    <label>Email</label>
+                    <input type="text" required formControlName="email" placeholder=""
+                        class="form-control" name="email" />
+                    <span
+                        *ngIf="!user.get('email')?.valid && user.get('email')?.touched && user.get('email')?.errors?.['required']"
+                        class="text-danger">
+                        Email is required
+                    </span>
+                    <span
+                        *ngIf="!user.get('email')?.valid && user.get('email')?.touched && user.get('email')?.errors?.['email']"
+                        class="text-danger">
+                        Please enter a valid email
+                    </span>
+                </div>
+                <!-- ----- -->
+               <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">information</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                <div class="modal-body">
+                    <div class="form-group"
+                    [ngClass]="{ 'form-invalid': !user.get('collageName')?.valid && user.get('collageName')?.['touched'] }">
+                    <label>collageName:</label>
+                    <input type="text" required formControlName="collageName" class="form-control"
+                        placeholder="name" name="name" />
+                    <span
+                        *ngIf="!user.get('collageName')?.valid && user.get('collageName')?.touched && user.get('collageName')?.errors?.['required']"
+                        class="text-danger">
+                        collageName is required
+                    </span>
+                    <span
+                        *ngIf="!user.get('collageName')?.valid && user.get('collageName')?.touched && user.get('collageName')?.errors?.['collageName']"
+                        class="text-danger">
+                        Please enter a valid collageName
+                    </span>
+                </div>
+                <!-- ----- -->
+                <div class="form-group"
+                [ngClass]="{ 'form-invalid': !user.get('departmentName')?.valid && user.get('departmentName')?.['touched'] }">
+                <label>departmentName:</label>
+                <input type="text" required formControlName="departmentName" class="form-control"
+                    placeholder="name" name="name" />
+                <span
+                    *ngIf="!user.get('departmentName')?.valid && user.get('departmentName')?.touched && user.get('departmentName')?.errors?.['required']"
+                    class="text-danger">
+                    departmentName is required
+                </span>
+                <span
+                    *ngIf="!user.get('departmentName')?.valid && user.get('departmentName')?.touched && user.get('departmentName')?.errors?.['departmentName']"
+                    class="text-danger">
+                    Please enter a valid departmentName
+                </span>
+            </div>
+            <br>
+            <div>
+                  <button type="button"  class="btn btn-secondary" (click)="adduser()">submit</button>
+            </div>
+        </div>
+
+    </ng-template>
+
+
+            </form>
+            <button type="button"  class="btn btn-lg btn-secondary" style="border-radius: 50%;" (click)="open(content)">+</button>
+              
+              <!-- ----------------------------------------------------- -->
+
+           <table class="table table-bordered">
+                <thead>
+                        <tr>
+                            <th>collageName</th>
+                            <th>departmentName</th>
+                            <th>name</th>
+                            <th>age</th>
+                            <th>email</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of studentData">
+                        <td>{{item.collageName}}</td>
+                        <td>{{item.departmentName}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.age}}</td>
+                        <td>{{item.email}}</td>
+                        <td>
+                            <button type="button"  class="btn btn-secondary" style="border-radius: 50%;"  (click)="remove(item.id)">-</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
