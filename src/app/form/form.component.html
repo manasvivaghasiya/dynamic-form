@@ -108,15 +108,11 @@
        
                 </div>
             </form>
-                </div>
-                <!-- <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" (click)="modal.close('click')">submit</button>
-                </div> -->
-              </ng-template>
+        </div>
+    </ng-template>
               
               <button type="button"  class="btn btn-lg btn-secondary" style="border-radius: 50%;" (click)="open(content)">+</button>
               
-              <pre>{{ closeResult }}</pre>
               <!-- ----------------------------------------------------- -->
 
            <table class="table table-bordered">
@@ -124,12 +120,18 @@
                         <tr>
                             <th>collageName</th>
                             <th>departmentName</th>
+                            <!-- <th>name</th>
+                            <th>age</th>
+                            <th>email</th> -->
                         </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of studentData">
                         <td>{{item.collageName}}</td>
                         <td>{{item.departmentName}}</td>
+                        <!-- <td>{{item.name}}</td>
+                        <td>{{item.age}}</td>
+                        <td>{{item.email}}</td> -->
                         <td>
                             <button type="button"  class="btn btn-secondary" style="border-radius: 50%;"  (click)="remove(item.id)">-</button>
                         </td>
@@ -139,3 +141,36 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

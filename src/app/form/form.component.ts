@@ -44,10 +44,11 @@ export class FormComponent implements OnInit {
        ...this.user.value,
        id:this.studentData.length + 1
      })
+     this.modalService.dismissAll();
     }
 
 
-  remove(id:number){
+  remove(id:any){
     this.studentData = this.studentData.filter((x:any) => x.id !=id);
   }
 
